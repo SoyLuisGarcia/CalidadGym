@@ -6,4 +6,12 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Servicios\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\MODELS\MODELS.csproj" />
+    </ItemGroup>
+
 </Project>
