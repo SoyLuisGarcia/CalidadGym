@@ -1,12 +1,59 @@
+using CORE.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using MODELS;
 
-namespace Biblioteca.Controllers;
-
-public class EmpleadosController : Controller
+namespace API.Controllers
 {
-    // GET
-    public IActionResult Index()
+    [ApiController]
+    [Route("[controller]")]
+    public class EmpleadosController : ControllerBase
     {
-        return View();
+        private readonly IEmpleado _empleado;
+
+        public EmpleadosController(IEmpleado empleado)
+        {
+            _empleado = empleado;
+        }
+    
+        [HttpPost]
+        public async Task<IActionResult> Guardar([FromBody] Empleado empleado)
+        {
+            var result = await this._empleado.GuardarEmpleado(empleado);
+            if (result == false)
+            {
+                return BadRequest(result);
+
+            }
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Listar()
+        {
+            var result = await this._empleado.ListarEmpleados();
+            return Ok(result);
+        }
+    
+        [HttpPut]
+        public async Task<IActionResult> Actualizar([FromBody] Empleado empleado)
+        {
+            var result = await this._empleado.ActualizarEmpleado(empleado);
+            if (result == false)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Eliminar([FromBody] Empleado empleado)
+        {
+            var result = await this._empleado.EliminarEmpleado(empleado);
+            if (result == false)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
     }
 }
