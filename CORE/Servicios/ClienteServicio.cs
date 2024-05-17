@@ -21,6 +21,7 @@ namespace CORE.Servicios
                     c.Edad = cliente.Edad;
                     c.Email = cliente.Email;
                     c.Telefono = cliente.Telefono;
+                    conexion.Cliente.Add(c);
                     resultado = conexion.SaveChanges() > 0;
                 }
             }

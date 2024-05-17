@@ -8,10 +8,10 @@ namespace CORE.Servicios
         public Task<bool> GuardarEmpleado(Empleado empleado)
         {
             bool resultado = false;
+            
             using (var conexion = new DATA.DataContext.DatabaseContext())
             {
-                var consulta = (from e in conexion.Empleado where e.EmpleadoID == empleado.EmpleadoID select e)
-                    .FirstOrDefault();
+                var consulta = (from e in conexion.Empleado where e.EmpleadoID == empleado.EmpleadoID select e).FirstOrDefault();
 
                 if (consulta == null)
                 {
@@ -22,6 +22,7 @@ namespace CORE.Servicios
                     e.Posicion = empleado.Posicion;
                     e.Email = empleado.Email;
                     e.Telefono = empleado.Telefono;
+                    conexion.Empleado.Add(e);
                     resultado = conexion.SaveChanges() > 0;
                 }
             }
@@ -53,8 +54,7 @@ namespace CORE.Servicios
             bool resultado = false;
             using (var conexion = new DATA.DataContext.DatabaseContext())
             {
-                var consulta = (from e in conexion.Empleado where e.EmpleadoID == empleado.EmpleadoID select e)
-                    .FirstOrDefault();
+                var consulta = (from e in conexion.Empleado where e.EmpleadoID == empleado.EmpleadoID select e).FirstOrDefault();
 
                 if (consulta != null)
                 {

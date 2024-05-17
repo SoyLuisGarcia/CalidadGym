@@ -22,6 +22,7 @@ namespace CORE.Servicios
                     m.EmpleadoID = membresia.EmpleadoID;
                     m.FechaInicio = membresia.FechaInicio;
                     m.FechaFin = membresia.FechaFin;
+                    conexion.Membresias.Add(m);
                     resultado = conexion.SaveChanges() > 0;
                 }
             }

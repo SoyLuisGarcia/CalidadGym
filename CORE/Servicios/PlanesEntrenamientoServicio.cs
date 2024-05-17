@@ -20,6 +20,7 @@ namespace CORE.Servicios
                     p.Descripcion = planesEntrenamiento.Descripcion;
                     p.DuracionMeses = planesEntrenamiento.DuracionMeses;
                     p.Precio = planesEntrenamiento.Precio;
+                    conexion.PlanesEntrenamiento.Add(p);
                     resultado = conexion.SaveChanges() > 0;
                 }
             }
