@@ -6,13 +6,13 @@ namespace DATA.DataContext
 {
     public class DatabaseContext : DbContext
     {
-        public virtual DbSet<Empleado> Empleados { get; set; }
+        public virtual DbSet<Empleado> Empleado { get; set; }
     
-        public virtual DbSet<Cliente> Clientes { get; set; }
+        public virtual DbSet<Cliente> Cliente { get; set; }
     
         public virtual DbSet<Membresias> Membresias { get; set; }
         
-        public virtual DbSet<PlanesEntrenamiento> PlanesEntrenamientos { get; set; }
+        public virtual DbSet<PlanesEntrenamiento> PlanesEntrenamiento { get; set; }
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
