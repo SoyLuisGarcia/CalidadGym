@@ -7,22 +7,92 @@ namespace CORE.Servicios
     {
         public Task<bool> GuardarCliente(Cliente cliente)
         {
-            throw new NotImplementedException();
+            bool resultado = false;
+            using (var conexion = new DATA.DataContext.DatabaseContext())
+            {
+                var consulta = (from c in conexion.Clientes where c.ClienteID == cliente.ClienteID select c).FirstOrDefault();
+
+                if (consulta == null)
+                {
+                    Cliente c = new Cliente();
+                    c.ClienteID = cliente.ClienteID;
+                    c.Nombre = cliente.Nombre;
+                    c.Apellido = cliente.Apellido;
+                    c.Edad = cliente.Edad;
+                    c.Email = cliente.Email;
+                    c.Telefono = cliente.Telefono;
+                    resultado = conexion.SaveChanges() > 0;
+                }
+            }
+
+            return Task.FromResult(resultado);
         }
 
         public Task<bool> EliminarCliente(Cliente cliente)
         {
-            throw new NotImplementedException();
+            bool resultado = false;
+            using (var conexion = new DATA.DataContext.DatabaseContext())
+            {
+                var consulta = (from c in conexion.Clientes where c.ClienteID == cliente.ClienteID select c).FirstOrDefault();
+
+                if (consulta != null)
+                {
+                    conexion.Clientes.Remove(consulta);
+                    resultado = conexion.SaveChanges() > 0;
+                }
+            }
+
+            return Task.FromResult(resultado);        
         }
 
         public Task<bool> ActualizarCliente(Cliente cliente)
         {
-            throw new NotImplementedException();
+            bool resultado = false;
+            using (var conexion = new DATA.DataContext.DatabaseContext())
+            {
+                var consulta = (
+                    from c in conexion.Clientes
+                    where c.ClienteID == cliente.ClienteID
+                    select c
+                ).FirstOrDefault();
+
+                if (consulta != null)
+                {
+                    consulta.ClienteID = cliente.ClienteID;
+                    consulta.Nombre = cliente.Nombre;
+                    consulta.Apellido = cliente.Apellido;
+                    consulta.Edad = cliente.Edad;
+                    consulta.Email = cliente.Email;
+                    consulta.Telefono = cliente.Telefono;
+                    resultado = conexion.SaveChanges() > 0;
+                }
+            }
+
+            return Task.FromResult(resultado);        
         }
 
-        public Task<List<Empleado>> ListarCliente()
+        public Task<List<Cliente>> ListarCliente()
         {
-            throw new NotImplementedException();
+            List<Cliente> listaClientes = new List<Cliente>();
+            using (var conexion = new DATA.DataContext.DatabaseContext())
+            {
+                var consulta = (from c in conexion.Clientes select c).ToList();
+
+                foreach (var c in consulta)
+                {
+                    listaClientes.Add(new Cliente()
+                    {
+                        ClienteID = c.ClienteID,
+                        Nombre = c.Nombre,
+                        Apellido = c.Apellido,
+                        Edad = c.Edad,
+                        Email = c.Email,
+                        Telefono = c.Telefono
+                    });
+                }
+            
+                return Task.FromResult(listaClientes);
+            }        
         }
     }    
 }
