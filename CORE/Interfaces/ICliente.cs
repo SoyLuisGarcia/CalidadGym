@@ -5,6 +5,6 @@ namespace CORE.Interfaces
         Task<bool> GuardarCliente(MODELS.Cliente cliente);
         Task<bool> EliminarCliente(MODELS.Cliente cliente);
         Task<bool> ActualizarCliente(MODELS.Cliente cliente);
-        Task<List<MODELS.Empleado>> ListarCliente();
+        Task<List<MODELS.Cliente>> ListarCliente();
     }
 }
