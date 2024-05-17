@@ -10,7 +10,7 @@ namespace CORE.Servicios
             bool resultado = false;
             using (var conexion = new DATA.DataContext.DatabaseContext())
             {
-                var consulta = (from p in conexion.PlanesEntrenamientos where p.PlanID == planesEntrenamiento.PlanID select p).FirstOrDefault();
+                var consulta = (from p in conexion.PlanesEntrenamiento where p.PlanID == planesEntrenamiento.PlanID select p).FirstOrDefault();
 
                 if (consulta == null)
                 {
@@ -32,12 +32,12 @@ namespace CORE.Servicios
             bool resultado = false;
             using (var conexion = new DATA.DataContext.DatabaseContext())
             {
-                var consulta = (from p in conexion.PlanesEntrenamientos where p.PlanID == planesEntrenamiento.PlanID select p)
+                var consulta = (from p in conexion.PlanesEntrenamiento where p.PlanID == planesEntrenamiento.PlanID select p)
                     .FirstOrDefault();
 
                 if (consulta != null)
                 {
-                    conexion.PlanesEntrenamientos.Remove(consulta);
+                    conexion.PlanesEntrenamiento.Remove(consulta);
                     resultado = conexion.SaveChanges() > 0;
                 }
             }
@@ -51,7 +51,7 @@ namespace CORE.Servicios
             bool resultado = false;
             using (var conexion = new DATA.DataContext.DatabaseContext())
             {
-                var consulta = (from p in conexion.PlanesEntrenamientos where p.PlanID == planesEntrenamiento.PlanID select p)
+                var consulta = (from p in conexion.PlanesEntrenamiento where p.PlanID == planesEntrenamiento.PlanID select p)
                     .FirstOrDefault();
 
                 if (consulta != null)
@@ -73,7 +73,7 @@ namespace CORE.Servicios
             List<PlanesEntrenamiento> listaPlanes = new List<PlanesEntrenamiento>();
             using (var conexion = new DATA.DataContext.DatabaseContext())
             {
-                var consulta = (from p in conexion.PlanesEntrenamientos select p).ToList();
+                var consulta = (from p in conexion.PlanesEntrenamiento select p).ToList();
 
                 foreach (var p in consulta)
                 {

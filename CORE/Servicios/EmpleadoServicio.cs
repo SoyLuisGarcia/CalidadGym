@@ -10,7 +10,7 @@ namespace CORE.Servicios
             bool resultado = false;
             using (var conexion = new DATA.DataContext.DatabaseContext())
             {
-                var consulta = (from e in conexion.Empleados where e.EmpleadoID == empleado.EmpleadoID select e)
+                var consulta = (from e in conexion.Empleado where e.EmpleadoID == empleado.EmpleadoID select e)
                     .FirstOrDefault();
 
                 if (consulta == null)
@@ -34,12 +34,12 @@ namespace CORE.Servicios
             bool resultado = false;
             using (var conexion = new DATA.DataContext.DatabaseContext())
             {
-                var consulta = (from e in conexion.Empleados where e.EmpleadoID == empleado.EmpleadoID select e)
+                var consulta = (from e in conexion.Empleado where e.EmpleadoID == empleado.EmpleadoID select e)
                     .FirstOrDefault();
 
                 if (consulta != null)
                 {
-                    conexion.Empleados.Remove(consulta);
+                    conexion.Empleado.Remove(consulta);
                     resultado = conexion.SaveChanges() > 0;
                 }
             }
@@ -53,7 +53,7 @@ namespace CORE.Servicios
             bool resultado = false;
             using (var conexion = new DATA.DataContext.DatabaseContext())
             {
-                var consulta = (from e in conexion.Empleados where e.EmpleadoID == empleado.EmpleadoID select e)
+                var consulta = (from e in conexion.Empleado where e.EmpleadoID == empleado.EmpleadoID select e)
                     .FirstOrDefault();
 
                 if (consulta != null)
@@ -76,7 +76,7 @@ namespace CORE.Servicios
             List<Empleado> listaEmpleados = new List<Empleado>();
             using (var conexion = new DATA.DataContext.DatabaseContext())
             {
-                var consulta = (from c in conexion.Empleados select c).ToList();
+                var consulta = (from c in conexion.Empleado select c).ToList();
 
                 foreach (var e in consulta)
                 {

@@ -10,7 +10,7 @@ namespace CORE.Servicios
             bool resultado = false;
             using (var conexion = new DATA.DataContext.DatabaseContext())
             {
-                var consulta = (from c in conexion.Clientes where c.ClienteID == cliente.ClienteID select c).FirstOrDefault();
+                var consulta = (from c in conexion.Cliente where c.ClienteID == cliente.ClienteID select c).FirstOrDefault();
 
                 if (consulta == null)
                 {
@@ -33,11 +33,11 @@ namespace CORE.Servicios
             bool resultado = false;
             using (var conexion = new DATA.DataContext.DatabaseContext())
             {
-                var consulta = (from c in conexion.Clientes where c.ClienteID == cliente.ClienteID select c).FirstOrDefault();
+                var consulta = (from c in conexion.Cliente where c.ClienteID == cliente.ClienteID select c).FirstOrDefault();
 
                 if (consulta != null)
                 {
-                    conexion.Clientes.Remove(consulta);
+                    conexion.Cliente.Remove(consulta);
                     resultado = conexion.SaveChanges() > 0;
                 }
             }
@@ -51,7 +51,7 @@ namespace CORE.Servicios
             using (var conexion = new DATA.DataContext.DatabaseContext())
             {
                 var consulta = (
-                    from c in conexion.Clientes
+                    from c in conexion.Cliente
                     where c.ClienteID == cliente.ClienteID
                     select c
                 ).FirstOrDefault();
@@ -76,7 +76,7 @@ namespace CORE.Servicios
             List<Cliente> listaClientes = new List<Cliente>();
             using (var conexion = new DATA.DataContext.DatabaseContext())
             {
-                var consulta = (from c in conexion.Clientes select c).ToList();
+                var consulta = (from c in conexion.Cliente select c).ToList();
 
                 foreach (var c in consulta)
                 {
