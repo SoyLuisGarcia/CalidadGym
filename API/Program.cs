@@ -14,6 +14,9 @@ builder.Services.AddSwaggerGen();
 Configuracion.CadenaConexxion = builder.Configuration.GetConnectionString("CadenaConexion");
 
 builder.Services.AddTransient<IEmpleado, EmpleadoServicio>();
+builder.Services.AddTransient<ICliente, ClienteServicio>();
+builder.Services.AddTransient<IMembresias, MembresiasServicio>();
+builder.Services.AddTransient<IPlanesEntrenamiento, PlanesEntrenamientoServicio>();
 
 
 var app = builder.Build();
