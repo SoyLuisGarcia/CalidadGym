@@ -1,6 +1,7 @@
 using CORE.Interfaces;
 using CORE.Servicios;
 using HELPERS;
+using MODELS;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,9 @@ builder.Services.AddTransient<IEmpleado, EmpleadoServicio>();
 builder.Services.AddTransient<ICliente, ClienteServicio>();
 builder.Services.AddTransient<IMembresias, MembresiasServicio>();
 builder.Services.AddTransient<IPlanesEntrenamiento, PlanesEntrenamientoServicio>();
+builder.Services.AddTransient<IFacturacion, FacturacionServicio>();
+builder.Services.AddTransient<IVentas, VentasServicio>();
+builder.Services.AddTransient<ISuplementos, SuplementosServicio>();
 
 
 var app = builder.Build();
