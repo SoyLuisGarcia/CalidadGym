@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MODELS;
 
-public class Sumplementos
+public class Suplementos
 {
     [Key]
     public int SuplementoID { get; set; }
