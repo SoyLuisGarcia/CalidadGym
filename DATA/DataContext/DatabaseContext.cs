@@ -13,6 +13,9 @@ namespace DATA.DataContext
         public virtual DbSet<Membresias> Membresias { get; set; }
         
         public virtual DbSet<PlanesEntrenamiento> PlanesEntrenamiento { get; set; }
+        public virtual DbSet<Facturacion> Facturacion { get; set; }
+        public virtual DbSet<Ventas> Ventas { get; set; }
+        public virtual DbSet<Sumplementos> Sumplementos { get; set; }
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
